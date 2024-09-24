@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Video</title>
+</head>
+<body>
+    <h1>Translate Video</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file">Upload Video:</label>
+        <input type="file" name="file" id="file" required>
+        <br><br>
+        <label for="language">Target Language:</label>
+        <select name="language" id="language" required>
+            <option value="hi">Hindi</option>
+            <option value="bn">Bengali</option>
+            <option value="te">Telugu</option>
+            <option value="mr">Marathi</option>
+            <option value="ta">Tamil</option>
+            <option value="gu">Gujarati</option>
+            <option value="kn">Kannada</option>
+            <option value="ml">Malayalam</option>
+            <option value="or">Odia</option>
+            <option value="pa">Punjabi</option>
+            <option value="as">Assamese</option>
+            <option value="ur">Urdu</option>
+        </select>
+        <br><br>
+        <button type="submit">Translate</button>
+    </form>
+
+    {% if result %}
+    <h2>Translated Video:</h2>
+    <video width="600" controls>
+        <source src="{{ url_for('translated_file', filename=result) }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
